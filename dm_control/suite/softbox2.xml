@@ -1,0 +1,63 @@
+<mujoco model="Soft box">
+    <!--  Copyright © 2018, Roboti LLC
+
+          This file is licensed under the MuJoCo Resource License (the "License").
+          You may not use this file except in compliance with the License.
+          You may obtain a copy of the License at
+
+            https://www.roboti.us/resourcelicense.txt
+    -->
+
+    <include file="scene.xml"/>
+ 
+    <option solver="CG" tolerance="1e-6"/>
+
+    <size nconmax="500" njmax="5000" nstack="5000000"/>
+
+    <worldbody>
+        <body  pos="0 0 1">
+            <freejoint/>
+
+            <body name="B0" pos="0 0.05 -0.07" quat="1 1 1 1">
+                <composite  type="loop" count="20 1 1" spacing="0.04" offset="0 0 2">
+                    <joint kind="main" damping="0.005"/>
+                    <geom type="capsule" size=".01 .02" rgba=".8 .2 .1 1"/>
+                </composite>
+            </body>
+
+            <body pos="0 0 0.02">
+                <joint axis="1 1 1" limited="true" name="joint0" pos="0 0 0" range="-3.0 3.0" type="slide" frictionloss="2"/> 
+                
+                <composite  prefix="box1" type="box" count="20 3 3" spacing="0.04">
+                    <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>
+                    <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" />
+                </composite>
+                
+            </body>   
+            
+
+
+            <body pos="0 0 0.1">
+                <joint axis="1 1 1" limited="true" name="joint1" pos="0 0 0" range="-3.0 3.0" type="slide" frictionloss="2"/> 
+                
+                <composite  prefix="box2" type="box" count="20 2 2" spacing="0.04">
+                    <skin texcoord="true" material="matsponge" rgba=".1 .9 .1 1"/>
+                    <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" />
+                </composite>
+                
+            </body>   
+
+            <body pos="0 0.1 0.08">
+                <joint axis="1 1 1" limited="true" name="joint2" pos="0 0 0" range="-3.0 3.0" type="slide" frictionloss="2"/> 
+                
+                <composite  prefix="box3" type="box" count="20 3 3" spacing="0.04">
+                    <skin texcoord="true" material="matsponge" rgba=".9 .1 .1 1"/>
+                    <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1" />
+                </composite>
+                
+            </body>    
+
+        </body>
+    </worldbody>
+
+</mujoco>
